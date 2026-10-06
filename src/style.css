@@ -1,0 +1,1691 @@
+:root {
+  --primary: #008ecc; /* Primary */
+  --bg-1: #f5f5f5; /* Background 1: cards, tiles, top bar */
+  --bg-3: #f3f9fb; /* Background 3: search bar, pills, menu button */
+  --text: #666666; /* Text */
+  --heading: #222222; /* Heading */
+  --text-primary: #181818; /* Light/Greyscale/Text-primary */
+  --border: #ededed; /* Border: card outline */
+  --line: #d9d9d9; /* Line: dividers, inactive dots */
+  --white: #ffffff;
+  --black: #000000;
+  --savings: #249b3e; /* "Save - ₹..." green */
+  --hero-bg: #212844; /* Hero banner navy */
+  --apple-bg: #313131; /* Apple banner */
+  --apple-chip: #494949;
+  --realme-bg: #fff3cc; /* Realme banner */
+  --realme-chip: #f6de8d;
+  --realme-logo: #ffe16a;
+  --xiaomi-bg: #ffecdf; /* Xiaomi banner */
+  --xiaomi-chip: #ffd1b0;
+  --xiaomi-logo: #ff6900;
+}
+
+/*
+ * Edits: Entire page: resets margins/padding and makes sizes include borders
+ */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/*
+ * Edits: Entire page: base font, text colour, white background and the fixed 1440px page width
+ * Note: The design is a fixed 1440px frame: narrower windows scroll sideways.
+ */
+body {
+  min-width: 1440px;
+  font-family: 'Hanken Grotesk', 'HK Grotesk', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  color: var(--text);
+  background: var(--white);
+  -webkit-font-smoothing: antialiased;
+}
+
+/*
+ * Edits: All images: displayed as blocks
+ */
+img {
+  display: block;
+}
+
+/*
+ * Edits: Card photos (phones, categories, banner phones, essentials): a photo placed in its exact Figma box
+ * Note: BoxImage: every card photo sits in an exact box. Without a crop the photo covers the
+ *       box (Figma "object-cover"); with a crop the outer box clips an inner photo that has
+ *       Figma's exact width / height / left / top in %.
+ */
+.box-image {
+  position: absolute;
+  display: block;
+  object-fit: cover;
+}
+
+/*
+ * Edits: Card photos that use a zoomed Figma crop: clips the photo to its box
+ */
+.box-image--crop {
+  overflow: hidden;
+}
+
+/*
+ * Edits: Card photos with a zoomed crop: the photo inside the clipping box
+ */
+.box-image--crop img {
+  position: absolute;
+  max-width: none;
+}
+
+/*
+ * Edits: All buttons: removes the browser button look
+ */
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+/*
+ * Edits: All lists: removes bullets
+ */
+ul {
+  list-style: none;
+}
+
+/*
+ * Edits: All links: removes underline and keeps the text colour
+ */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/*
+ * Edits: Every section: the centred 1200px content column (page x 120 to 1320)
+ * Note: The 1200px content column used by every section (Figma: x 120 -> 1320).
+ */
+.container {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+/* ==========================================================================
+   2. TOPBAR
+   Full-width #F5F5F5 strip, 42px tall. 14px text, #666.
+   Children are placed at exact x / y inside the 1200px column.
+   ========================================================================== */
+
+/*
+ * Edits: Top bar: the full-width grey strip at the very top
+ */
+.topbar {
+  height: 42px;
+  background: var(--bg-1);
+  font-size: 14px;
+  color: var(--text);
+}
+
+/*
+ * Edits: Top bar: the 1200px area its items are positioned in
+ */
+.topbar__inner {
+  position: relative;
+  height: 42px;
+}
+
+/*
+ * Edits: Top bar: "Welcome to worldwide Megamart!" text on the left
+ * Note: "Welcome to worldwide Megamart!" x 0 / y 14, 214 x 14, line height 14
+ */
+.topbar__welcome {
+  position: absolute;
+  left: 0;
+  top: 14px;
+  width: 214px;
+  height: 14px;
+  font-weight: 400;
+  line-height: 14px;
+  white-space: nowrap;
+}
+
+/*
+ * Edits: Top bar: the three links on the right (icon + text)
+ * Note: Three links, each 18px tall: icon (18 x 18) + 6px gap + text (line height 18)
+ */
+.topbar__link {
+  position: absolute;
+  top: 12px;
+  height: 18px;
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  font-weight: 400;
+  line-height: 18px;
+  white-space: nowrap;
+}
+
+/*
+ * Edits: Top bar: the small blue icons in front of each link
+ */
+.topbar__link .icon {
+  flex: none;
+  color: var(--primary);
+}
+
+/*
+ * Edits: Top bar: the bold "423651" in "Deliver to 423651"
+ */
+.topbar__link strong {
+  font-weight: 600;
+}
+
+/*
+ * Edits: Top bar: "Deliver to 423651" link position and width
+ * Note: page x 910
+ */
+.topbar__link--deliver {
+  left: 790px;
+  width: 136px;
+}
+
+/*
+ * Edits: Top bar: "Track your order" link position and width
+ * Note: page x 1078
+ */
+.topbar__link--track {
+  left: 958px;
+  width: 128px;
+}
+
+/*
+ * Edits: Top bar: "All Offers" link position and width
+ * Note: page x 1238
+ */
+.topbar__link--offers {
+  left: 1118px;
+  width: 82px;
+}
+
+/*
+ * Edits: Top bar: the thin vertical lines between the links
+ * Note: 1px vertical dividers between the links (18px tall)
+ */
+.topbar__divider {
+  position: absolute;
+  top: 12px;
+  width: 1px;
+  height: 18px;
+  background: var(--line);
+}
+
+/*
+ * Edits: Top bar: line between "Deliver to" and "Track your order"
+ * Note: page x 1062
+ */
+.topbar__divider--first {
+  left: 942px;
+}
+
+/*
+ * Edits: Top bar: line between "Track your order" and "All Offers"
+ * Note: page x 1222
+ */
+.topbar__divider--second {
+  left: 1102px;
+}
+
+/* ==========================================================================
+   3. HEADER
+   White bar from y 42 to y 131 (89px; the category row starts at 131).
+   ========================================================================== */
+
+/*
+ * Edits: Header: the white bar under the top bar
+ */
+.header__main {
+  height: 89px;
+  background: var(--white);
+}
+
+/*
+ * Edits: Header: the 1200px area the logo, search bar and buttons are positioned in
+ */
+.header__inner {
+  position: relative;
+  height: 89px;
+}
+
+/*
+ * Edits: Header: the light-blue menu button on the far left
+ * Note: Menu button: 48 x 48, 10px radius, #F3F9FB, at x 0 / y 21 (page 120 / 63). The 26 x 18
+ *       icon sits at 12 / 16 inside it.
+ */
+.logo__menu {
+  position: absolute;
+  left: 0;
+  top: 21px;
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  background: var(--bg-3);
+  color: var(--primary);
+}
+
+/*
+ * Edits: Header: the three-line icon inside the menu button
+ */
+.logo__menu svg {
+  position: absolute;
+  left: 12px;
+  top: 16px;
+}
+
+/*
+ * Edits: Header: the "MegaMart" logo text next to the menu button
+ * Note: "MegaMart" wordmark: 138 x 28 at x 64 / y 31 (page 184 / 73)
+ */
+.logo__text {
+  position: absolute;
+  left: 64px;
+  top: 31px;
+  width: 138px;
+  height: 28px;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 28px;
+  color: var(--primary);
+  white-space: nowrap;
+}
+
+/*
+ * Edits: Header: the light-blue search bar in the middle
+ * Note: Search bar: 507 x 48, 10px radius, #F3F9FB at x 422 / y 21 (page 542 / 63). Search
+ *       icon 18 x 18 at 16 / 15, placeholder at 44 / 15 (14px, line height 18), list icon 24 x
+ *       24 at 467 / 12.
+ */
+.search-bar {
+  position: absolute;
+  left: 422px;
+  top: 21px;
+  width: 507px;
+  height: 48px;
+  border-radius: 10px;
+  background: var(--bg-3);
+  color: var(--text);
+}
+
+/*
+ * Edits: Header: magnifying glass at the left of the search bar
+ */
+.search-bar .icon--search {
+  position: absolute;
+  left: 16px;
+  top: 15px;
+}
+
+/*
+ * Edits: Header: the text field / placeholder inside the search bar
+ */
+.search-bar input {
+  position: absolute;
+  left: 44px;
+  top: 15px;
+  width: 413px;
+  height: 18px;
+  padding: 0;
+  border: none;
+  outline: none;
+  background: none;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18px;
+  color: var(--text);
+}
+
+/*
+ * Edits: Header: the grey placeholder text of the search bar
+ */
+.search-bar input::placeholder {
+  color: var(--text);
+  opacity: 1;
+}
+
+/*
+ * Edits: Header: the blue list icon at the right end of the search bar
+ */
+.search-bar .icon--list {
+  position: absolute;
+  left: 467px;
+  top: 12px;
+  color: var(--primary);
+}
+
+/*
+ * Edits: Header: the "Sign Up/Sign In" + "Cart" group on the right
+ * Note: Sign Up/Sign In + Cart: 241 x 24 group at x 959 / y 33 (page 1079 / 75). Each item:
+ *       24px icon, 6px gap, 16px bold text (line height 18). 20px gaps.
+ */
+.header__actions {
+  position: absolute;
+  left: 959px;
+  top: 33px;
+  width: 241px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/*
+ * Edits: Header: each of the two buttons (icon + text)
+ */
+.header__action {
+  height: 24px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 18px;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+/*
+ * Edits: Header: the user and cart icons
+ */
+.header__action svg {
+  flex: none;
+}
+
+/*
+ * Edits: Header: "Sign Up/Sign In" button width
+ */
+.header__action--user {
+  width: 139px;
+}
+
+/*
+ * Edits: Header: "Cart" button width
+ */
+.header__action--cart {
+  width: 62px;
+}
+
+/*
+ * Edits: Header: colour of the buttons when the mouse is over them
+ */
+.header__action:hover {
+  color: var(--primary);
+}
+
+/*
+ * Edits: Header: the thin vertical line between Sign In and Cart
+ * Note: 24px divider between the two; it takes no width (like Figma)
+ */
+.header__divider {
+  position: relative;
+  width: 0;
+  height: 24px;
+}
+
+/*
+ * Edits: Header: the drawn 1px line of that divider
+ */
+.header__divider::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1px;
+  height: 24px;
+  background: var(--line);
+}
+
+/* ==========================================================================
+   4. NAVIGATION (category pills)
+   Band from y 131 to y 200 (69px): 1px #D9D9D9 line on the first and last
+   row, pills 36px tall starting at y 148, 14px apart.
+   ========================================================================== */
+
+/*
+ * Edits: Navigation: the white band with the grey lines above and below the pills
+ */
+.category-nav {
+  height: 69px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: var(--white);
+}
+
+/*
+ * Edits: Navigation: the row that holds all category pills
+ */
+.category-nav__list {
+  display: flex;
+  gap: 14px;
+}
+
+/*
+ * Edits: Navigation: one category pill (Groceries, Premium Fruits, ...)
+ * Note: Pill: 36px tall, 18px radius, 14px side padding, 14px medium text (line height 18),
+ *       18px arrow at the right. The width of each pill comes from Figma (set in App.tsx).
+ *       Inactive: #F3F9FB with #222 text.
+ */
+.pill {
+  position: relative;
+  height: 36px;
+  padding: 0 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 18px;
+  background: var(--bg-3);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
+  color: var(--heading);
+  white-space: nowrap;
+  transition: background 0.15s;
+}
+
+/*
+ * Edits: Navigation: the label text inside a pill
+ */
+.pill span {
+  text-align: left;
+}
+
+/*
+ * Edits: Navigation: the small down arrow inside a pill
+ * Note: arrow is always 14px from the pill's right edge
+ */
+.pill svg {
+  position: absolute;
+  right: 14px;
+  top: 9px;
+}
+
+/*
+ * Edits: Navigation: pill colour when the mouse is over it
+ */
+.pill:hover {
+  background: #e3f1f7;
+}
+
+/*
+ * Edits: Navigation: the selected (blue) pill, "Groceries" at the start
+ * Note: Active pill: #008ECC with white text
+ */
+.pill--active {
+  background: var(--primary);
+  color: var(--white);
+}
+
+/*
+ * Edits: Navigation: the selected pill keeps its blue when hovered
+ */
+.pill--active:hover {
+  background: var(--primary);
+}
+
+/* ==========================================================================
+   5. HERO BANNER
+   1201 x 316, 16px radius, #212844. Starts at y 220 (20px below the nav band).
+   ========================================================================== */
+
+/*
+ * Edits: Hero banner: the area that holds the banner and its two arrow buttons
+ */
+.hero-wrap {
+  position: relative;
+  height: 316px;
+  margin-top: 20px;
+}
+
+/*
+ * Edits: Hero banner: the big navy banner (1201 x 316)
+ */
+.hero {
+  position: relative;
+  width: 1201px;
+  height: 316px;
+  border-radius: 16px;
+  background: var(--hero-bg);
+  color: var(--white);
+  overflow: hidden;
+}
+
+/*
+ * Edits: Hero banner: window that clips the decorative circles on the right
+ * Note: Decorative circles: a 509 x 316 window on the right side of the banner
+ */
+.hero__decor {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 509px;
+  height: 316px;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/*
+ * Edits: Hero banner: base style of the decorative circles
+ */
+.hero__circle {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+/*
+ * Edits: Hero banner: largest decorative circle (top right)
+ */
+.hero__circle--1 {
+  width: 516px;
+  height: 516px;
+  left: 24px;
+  top: -339px;
+}
+
+/*
+ * Edits: Hero banner: second decorative circle (top right)
+ */
+.hero__circle--2 {
+  width: 480px;
+  height: 480px;
+  left: 42px;
+  top: -321px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/*
+ * Edits: Hero banner: big decorative circle at the bottom right
+ */
+.hero__circle--3 {
+  width: 177px;
+  height: 177px;
+  left: 99px;
+  top: 238px;
+}
+
+/*
+ * Edits: Hero banner: small decorative circle at the bottom right
+ */
+.hero__circle--4 {
+  width: 148px;
+  height: 147px;
+  left: 113px;
+  top: 253px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/*
+ * Edits: Hero banner: shared setup of its three text lines
+ * Note: Three text lines, all at x 90 (page 210): eyebrow y 40 (464 x 30, 30px semibold) title
+ *       y 90 (574 x 56, 63px bold, line height 63) offer y 166 (202 x 30, 30px semibold)
+ */
+.hero__eyebrow,
+.hero__title,
+.hero__offer {
+  position: absolute;
+  left: 90px;
+  z-index: 1;
+  white-space: nowrap;
+}
+
+/*
+ * Edits: Hero banner: "Best Deal Online on smart watches" line
+ */
+.hero__eyebrow {
+  top: 40px;
+  width: 464px;
+  height: 30px;
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 30px;
+}
+
+/*
+ * Edits: Hero banner: big "SMART WEARABLE." title
+ */
+.hero__title {
+  top: 90px;
+  width: 574px;
+  height: 56px;
+  font-size: 63px;
+  font-weight: 700;
+  line-height: 63px;
+}
+
+/*
+ * Edits: Hero banner: "UP to 80% OFF" line
+ */
+.hero__offer {
+  top: 166px;
+  width: 202px;
+  height: 30px;
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 30px;
+}
+
+/*
+ * Edits: Hero banner: the smart watch photo on the right
+ * Note: Watch image: 268 x 270 at x 808 / y 24 (page 928 / 244)
+ */
+.hero__image {
+  position: absolute;
+  left: 808px;
+  top: 24px;
+  width: 268px;
+  height: 270px;
+  object-fit: cover;
+}
+
+/*
+ * Edits: Hero banner: position of the carousel dots at the bottom left
+ * Note: Dots in the hero: 114 x 8 at x 90 / y 269 (page 210 / 489)
+ */
+.hero .dots {
+  position: absolute;
+  left: 90px;
+  top: 269px;
+}
+
+/*
+ * Edits: Hero banner: the two round arrow buttons (shared look)
+ * Note: Round arrow buttons: 86 x 86 circles centred on the banner's left and right edge. Left
+ *       at page 77 / 335, right at page 1278 / 336. 24px arrow inside.
+ */
+.hero__arrow {
+  position: absolute;
+  width: 86px;
+  height: 86px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--bg-3);
+  color: var(--primary);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  z-index: 2;
+  transition: background 0.15s, color 0.15s;
+}
+
+/*
+ * Edits: Hero banner: arrow button colours when hovered
+ */
+.hero__arrow:hover {
+  background: var(--primary);
+  color: var(--white);
+}
+
+/*
+ * Edits: Hero banner: left arrow button position
+ */
+.hero__arrow--left {
+  left: -43px;
+  top: 115px;
+}
+
+/*
+ * Edits: Hero banner: right arrow button position
+ */
+.hero__arrow--right {
+  left: 1158px;
+  top: 116px;
+}
+
+/*
+ * Edits: Carousel dots (hero banner and under the brand banners): the row of dots
+ * Note: Carousel dots (shared by hero and brand banners): 114 x 8, dots are 8px circles 4px
+ *       apart, the active one is a 30px pill.
+ */
+.dots {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  width: 114px;
+  height: 8px;
+}
+
+/*
+ * Edits: Carousel dots: one small round dot
+ */
+.dots__dot {
+  width: 8px;
+  height: 8px;
+  flex: none;
+  border-radius: 4px;
+  background: var(--line);
+  transition: width 0.2s, background 0.2s;
+}
+
+/*
+ * Edits: Carousel dots: the active dot (blue, longer pill)
+ */
+.dots__dot--active {
+  width: 30px;
+  background: var(--primary);
+}
+
+/* ==========================================================================
+   6. SECTION HEADER (shared by all four sections)
+   Each section starts 120px below the previous one. Title: 24px bold, 30px
+   line, then a 16px gap. The 1px #D9D9D9 line is the last row of the 46px
+   block; the 3px blue underline sits on the three rows above it and ends on
+   the same row. Cards start 40px below the block.
+   ========================================================================== */
+
+/*
+ * Edits: All four sections (Smartphones, Categories, Brands, Essentials): space above each section
+ */
+.section {
+  margin-top: 120px;
+}
+
+/*
+ * Edits: Section heading: the block with the title, the grey line and "View All"
+ */
+.section-header {
+  position: relative;
+  width: 1198px;
+  height: 46px;
+  background: linear-gradient(var(--line), var(--line)) bottom / 100% 1px no-repeat;
+}
+
+/*
+ * Edits: Section heading: the bold title text (e.g. "Grab the best deal on Smartphones")
+ */
+.section-header__title {
+  position: relative;
+  height: 46px;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 30px;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+/*
+ * Edits: Section heading: the blue highlighted part of the title
+ */
+.section-header__title span {
+  color: var(--primary);
+}
+
+/*
+ * Edits: Section heading: the thick blue underline below the title
+ * Note: Blue underline: width is set per section (--underline), 3px thick
+ */
+.section-header__title::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: var(--underline);
+  height: 3px;
+  background: var(--primary);
+}
+
+/*
+ * Edits: Section heading: the "View All >" link on the right
+ * Note: "View All >": 82 x 18 at x 1118 / y 6 (page 1238), 16px medium text, 6px gap, 18px
+ *       arrow
+ */
+.section-header__link {
+  position: absolute;
+  left: 1118px;
+  top: 6px;
+  width: 82px;
+  height: 18px;
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 18px;
+  color: var(--heading);
+}
+
+/*
+ * Edits: Section heading: the "View All" text
+ */
+.section-header__link span {
+  width: 58px;
+  text-align: right;
+  white-space: nowrap;
+}
+
+/*
+ * Edits: Section heading: the small arrow after "View All"
+ */
+.section-header__link svg {
+  flex: none;
+}
+
+/*
+ * Edits: Section heading: "View All" colour when hovered
+ */
+.section-header__link:hover {
+  color: var(--primary);
+}
+
+/*
+ * Edits: All four sections: the row of cards under the heading
+ * Note: Card rows (40px under the heading block)
+ */
+.row {
+  margin-top: 40px;
+  display: grid;
+}
+
+/*
+ * Edits: Smartphones section: row of 5 product cards
+ */
+.row--five {
+  grid-template-columns: repeat(5, 227px);
+  column-gap: 16px;
+}
+
+/*
+ * Edits: Smartphones section: the 5th card sits 1px further right (Figma x 1093)
+ * Note: Figma: 5th card at page x 1093
+ */
+.row--five > :nth-child(5) {
+  margin-left: 1px;
+}
+
+/*
+ * Edits: Top Categories section: row of 7 round category cards
+ */
+.row--seven {
+  grid-template-columns: repeat(7, 132px);
+  column-gap: 46px;
+}
+
+/*
+ * Edits: Top Electronics Brands section: row of 3 brand banners
+ */
+.row--three {
+  grid-template-columns: repeat(3, 389px);
+  column-gap: 16px;
+}
+
+/*
+ * Edits: Daily Essentials section: row of 6 tiles
+ */
+.row--six {
+  grid-template-columns: repeat(6, 187px);
+  column-gap: 16px;
+}
+
+/* ==========================================================================
+   7. PRODUCT CARD (smartphones)
+   227 x 295, #F5F5F5, 16px radius, 1px #EDEDED outline (drawn inside).
+   - phone image: its own box per card (set in App.tsx)
+   - white info panel: 225 x 106 at 1 / 188 (bottom corners 15px)
+   - blue badge: 51 x 53 at 176 / 0
+   ========================================================================== */
+
+/*
+ * Edits: Product card (smartphones): the 227 x 295 grey card
+ */
+.product-card {
+  position: relative;
+  width: 227px;
+  height: 295px;
+  border-radius: 16px;
+  background: var(--bg-1);
+  box-shadow: inset 0 0 0 1px var(--border);
+  transition: box-shadow 0.2s;
+}
+
+/*
+ * Edits: Product card: blue outline + shadow when hovered, and on the highlighted (2nd) card
+ * Note: Highlighted / hovered card: 1px #008ECC outline + layered shadow (Figma)
+ */
+.product-card:hover,
+.product-card--highlighted {
+  box-shadow:
+    inset 0 0 0 1px var(--primary),
+    0 151px 42px rgba(0, 0, 0, 0),
+    0 97px 39px rgba(0, 0, 0, 0.01),
+    0 54px 33px rgba(0, 0, 0, 0.03),
+    0 24px 24px rgba(0, 0, 0, 0.04),
+    0 6px 13px rgba(0, 0, 0, 0.05),
+    0 0 0 rgba(0, 0, 0, 0.05);
+}
+
+/*
+ * Edits: Product card: the blue "56% OFF" tab in the top-right corner
+ * Note: Phone photo: placed in its own Figma box by BoxImage (see .box-image below)
+ * Note: Badge "56% OFF": 51 x 53, #008ECC, bottom-left and top-right corners 16px. Text box 35
+ *       x 32 at 8 / 11: 14px semibold, line height 16, centred, white.
+ */
+.product-card__badge {
+  position: absolute;
+  left: 176px;
+  top: 0;
+  width: 51px;
+  height: 53px;
+  padding: 11px 8px 10px;
+  border-radius: 0 16px 0 16px;
+  background: var(--primary);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 16px;
+  text-align: center;
+  color: var(--white);
+}
+
+/*
+ * Edits: Product card: the white panel at the bottom of the card
+ * Note: Info panel and its children (offsets measured inside the panel): name 12 / 12 height
+ *       18, 16px semibold #222 price 12 / 40 56 wide, 16px bold #222 old 78 / 40 54 wide, 16px
+ *       regular, struck through divider 12 / 67 201 x 1, #D9D9D9 savings 11 / 78 height 18,
+ *       16px semibold #249B3E
+ */
+.product-card__info {
+  position: absolute;
+  left: 1px;
+  bottom: 1px;
+  width: 225px;
+  height: 106px;
+  border-radius: 0 0 15px 15px;
+  background: var(--white);
+}
+
+/*
+ * Edits: Product card: shared text setup for everything inside the white panel
+ */
+.product-card__info > * {
+  position: absolute;
+  font-size: 16px;
+  line-height: 18px;
+  white-space: nowrap;
+}
+
+/*
+ * Edits: Product card: phone name (e.g. "Galaxy M13 (4GB | 64 GB )")
+ */
+.product-card__name {
+  left: 12px;
+  top: 12px;
+  height: 18px;
+  font-weight: 600;
+  color: var(--heading);
+}
+
+/*
+ * Edits: Product card: current price (bold)
+ */
+.product-card__price {
+  left: 12px;
+  top: 40px;
+  width: 56px;
+  height: 18px;
+  font-weight: 700;
+  color: var(--heading);
+}
+
+/*
+ * Edits: Product card: old price with a line through it
+ */
+.product-card__old-price {
+  left: 78px;
+  top: 40px;
+  width: 54px;
+  height: 18px;
+  font-weight: 400;
+  color: var(--heading);
+}
+
+/*
+ * Edits: Product card: thin grey line between the price and the savings
+ */
+.product-card__divider {
+  left: 12px;
+  top: 67px;
+  width: 201px;
+  height: 1px;
+  background: var(--line);
+}
+
+/*
+ * Edits: Product card: green "Save - ₹..." line
+ */
+.product-card__savings {
+  left: 11px;
+  top: 78px;
+  height: 18px;
+  font-weight: 600;
+  color: var(--savings);
+}
+
+/* ==========================================================================
+   8. CATEGORY CARD (Top Categories)
+   132 x 172: a 132px #F5F5F5 circle, the name 20px below it (132 x 20).
+   The image sits in its own box inside the circle (set in App.tsx).
+   ========================================================================== */
+
+/*
+ * Edits: Category card (Top Categories): one category (circle + name)
+ */
+.category-card {
+  width: 132px;
+  height: 172px;
+  cursor: pointer;
+}
+
+/*
+ * Edits: Category card: the round grey circle that holds the photo
+ */
+.category-card__circle {
+  position: relative;
+  width: 132px;
+  height: 132px;
+  border-radius: 50%;
+  background: var(--bg-1);
+  transition: box-shadow 0.2s;
+}
+
+/*
+ * Edits: Category card: the name under the circle (Mobile, Cosmetics, ...)
+ * Note: Name: 16px medium, line height 20, centred, black (Mobile uses #222)
+ */
+.category-card__name {
+  margin-top: 20px;
+  width: 132px;
+  height: 20px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+  text-align: center;
+  color: var(--black);
+}
+
+/*
+ * Edits: Category card: name colour of the selected category (Mobile)
+ */
+.category-card--selected .category-card__name {
+  color: var(--heading);
+}
+
+/*
+ * Edits: Category card: blue ring + glow around the circle when hovered / selected
+ * Note: Selected / hovered category: blue ring + soft blue glow
+ */
+.category-card:hover .category-card__circle,
+.category-card--selected .category-card__circle {
+  box-shadow:
+    0 0 0 1px var(--primary),
+    0 12px 24px rgba(0, 142, 204, 0.25);
+}
+
+/* ==========================================================================
+   9. BRAND BANNER (Top Electronics Brands)
+   389 x 207, 16px radius. Colours come from CSS variables set per banner.
+   Chip 20 / 20 (35px tall), logo 20 / 75, offer text 20 / top (set in App.tsx),
+   phone image in its own box.
+   ========================================================================== */
+
+/*
+ * Edits: Brand banner (Top Electronics Brands): one 389 x 207 coloured banner
+ */
+.brand-banner {
+  position: relative;
+  width: 389px;
+  height: 207px;
+  border-radius: 16px;
+  background: var(--banner-bg);
+  color: var(--banner-text);
+  overflow: hidden;
+}
+
+/*
+ * Edits: Brand banner: window that clips the big circle behind the phone
+ * Note: Big circle: 246px, clipped by a 215 x 189 window at 174 / 0 (Figma mask)
+ */
+.brand-banner__window {
+  position: absolute;
+  left: 174px;
+  top: 0;
+  width: 215px;
+  height: 189px;
+  overflow: hidden;
+}
+
+/*
+ * Edits: Brand banner: the big translucent circle behind the phone
+ */
+.brand-banner__circle {
+  position: absolute;
+  left: 14px;
+  top: -85px;
+  width: 246px;
+  height: 246px;
+  border-radius: 50%;
+  background: var(--banner-chip);
+  opacity: 0.6;
+}
+
+/*
+ * Edits: Brand banner: the small tag in the top-left (IPHONE / REALME / XIAOMI)
+ * Note: Tag chip: 35px tall, 8px radius, 20px side padding, 14px regular text with 1.4px
+ *       letter spacing (IPHONE 99 wide, REALME 102, XIAOMI 96)
+ */
+.brand-banner__chip {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  height: 35px;
+  padding: 9px 0 0 20px;
+  border-radius: 8px;
+  background: var(--banner-chip);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 17px;
+  letter-spacing: 1.4px;
+  white-space: nowrap;
+  color: var(--banner-chip-text);
+}
+
+/*
+ * Edits: Brand banner: "UP to 80% OFF" text
+ * Note: Offer text: 24px semibold, line height 30, 162 wide
+ */
+.brand-banner__promo {
+  position: absolute;
+  left: 20px;
+  width: 162px;
+  height: 30px;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 30px;
+  white-space: nowrap;
+}
+
+/*
+ * Edits: Brand banner: the phone photo on the right (with its box shadow)
+ * Note: Phone photo with the layered box shadow from Figma
+ */
+.brand-banner__image {
+  box-shadow:
+    0 137px 38px rgba(0, 0, 0, 0),
+    0 88px 35px rgba(0, 0, 0, 0.01),
+    0 49px 30px rgba(0, 0, 0, 0.05),
+    0 22px 22px rgba(0, 0, 0, 0.09),
+    0 5px 12px rgba(0, 0, 0, 0.1),
+    0 0 0 rgba(0, 0, 0, 0.1);
+}
+
+/*
+ * Edits: Brand banner: shared position of the brand logo under the tag
+ * Note: Brand logos, all at 20 / 75: Apple 62 x 62 (white, 16px radius), Realme 114 x 34,
+ *       Xiaomi 67 x 67
+ */
+.brand-logo {
+  position: absolute;
+  left: 20px;
+  top: 75px;
+  display: grid;
+  place-items: center;
+}
+
+/*
+ * Edits: Brand banner (Apple): white square logo box
+ */
+.brand-logo--apple {
+  width: 62px;
+  height: 62px;
+  border-radius: 16px;
+  background: var(--white);
+  color: var(--black);
+}
+
+/*
+ * Edits: Brand banner (Apple): the apple symbol inside the logo box
+ */
+.brand-logo--apple svg {
+  position: absolute;
+  left: 12.4px;
+  top: 7.75px;
+}
+
+/*
+ * Edits: Brand banner (Realme): yellow "realme" logo box
+ */
+.brand-logo--realme {
+  width: 114px;
+  height: 34px;
+  border-radius: 6px;
+  background: var(--realme-logo);
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 24px;
+  color: var(--black);
+}
+
+/*
+ * Edits: Brand banner (Xiaomi): orange "mi" logo box
+ */
+.brand-logo--xiaomi {
+  width: 67px;
+  height: 67px;
+  border-radius: 16px;
+  background: var(--xiaomi-logo);
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 34px;
+  color: var(--white);
+}
+
+/*
+ * Edits: Top Electronics Brands section: the row with the carousel dots under the banners
+ * Note: Dots under the banners: 114 x 8, 30px below the cards, centred
+ */
+.brand-dots {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+/* ==========================================================================
+   10. ESSENTIAL CARD (Daily Essentials)
+   187 x 187 #F5F5F5 tile with 16px radius. The name is 20px below the tile,
+   the discount 4px under the name. Images sit in their own boxes.
+   ========================================================================== */
+
+/*
+ * Edits: Essential card (Daily Essentials): one tile with its name and discount
+ */
+.essential-card {
+  width: 187px;
+  cursor: pointer;
+}
+
+/*
+ * Edits: Essential card: the grey square tile that holds the photo
+ */
+.essential-card__tile {
+  position: relative;
+  width: 187px;
+  height: 187px;
+  border-radius: 16px;
+  background: var(--bg-1);
+  transition: box-shadow 0.2s;
+}
+
+/*
+ * Edits: Essential card: blue outline + shadow around the tile when hovered / selected
+ * Note: Selected / hovered tile: 1px #008ECC outline + soft layered shadow (Figma)
+ */
+.essential-card:hover .essential-card__tile,
+.essential-card--selected .essential-card__tile {
+  box-shadow:
+    inset 0 0 0 1px var(--primary),
+    0 82px 23px rgba(0, 0, 0, 0),
+    0 52px 21px rgba(0, 0, 0, 0.01),
+    0 29px 18px rgba(0, 0, 0, 0.03),
+    0 13px 13px rgba(0, 0, 0, 0.04),
+    0 3px 7px rgba(0, 0, 0, 0.05),
+    0 0 0 rgba(0, 0, 0, 0.05);
+}
+
+/*
+ * Edits: Essential card: the name under the tile (Vegetables, Fruits, ...)
+ * Note: Name: 16px semibold #666, line height 20. Discount: 20px bold #222, line height 20.
+ */
+.essential-card__name {
+  margin-top: 20px;
+  height: 20px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+  text-align: center;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+/*
+ * Edits: Essential card: the bold "UP to 50% OFF" text
+ */
+.essential-card__discount {
+  margin-top: 4px;
+  height: 20px;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 20px;
+  text-align: center;
+  color: var(--heading);
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   11. FOOTER
+   Full-width #008ECC block, 592px tall, 120px below the last section.
+   Everything inside is placed at an exact x / y measured from the footer's
+   top-left corner of the 1200px column (page x = 120 + x, page y = 2443 + y).
+   ========================================================================== */
+
+/*
+ * Edits: Footer: the full-width blue block at the bottom
+ */
+.footer {
+  position: relative;
+  height: 592px;
+  margin-top: 120px;
+  background: var(--primary);
+  color: var(--white);
+  overflow: hidden;
+}
+
+/*
+ * Edits: Footer: window that clips the decorative circles in the top-right corner
+ * Note: Decorative circles: a 321 x 401 window in the top-right corner
+ */
+.footer__decor {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 321px;
+  height: 401px;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/*
+ * Edits: Footer: base style of the decorative circles
+ */
+.footer__circle {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+/*
+ * Edits: Footer: outer decorative circle
+ */
+.footer__circle--1 {
+  width: 467px;
+  height: 467px;
+  left: 16px;
+  top: -118px;
+}
+
+/*
+ * Edits: Footer: inner decorative circle
+ */
+.footer__circle--2 {
+  width: 434px;
+  height: 434px;
+  left: 32px;
+  top: -102px;
+}
+
+/*
+ * Edits: Footer: the 1200px area all footer items are positioned in
+ */
+.footer__inner {
+  position: relative;
+  height: 592px;
+}
+
+/*
+ * Edits: Footer: every item inside is placed with exact x / y
+ */
+.footer__inner > * {
+  position: absolute;
+}
+
+/*
+ * Edits: Footer: big "MegaMart" text at the top left
+ * Note: Column 1 - brand logo text 217 x 44 at 0 / 80
+ */
+.footer__brand {
+  left: 0;
+  top: 80px;
+  width: 217px;
+  height: 44px;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 44px;
+}
+
+/*
+ * Edits: Footer: shared look of the "Contact Us" and "Download App" titles
+ * Note: Titles "Contact Us" (3 / 158) and "Download App" (0 / 333): 20px bold, line height 20
+ */
+.footer__title {
+  height: 20px;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 20px;
+  white-space: nowrap;
+}
+
+/*
+ * Edits: Footer: "Contact Us" title position
+ */
+.footer__contact-title {
+  left: 3px;
+  top: 158px;
+}
+
+/*
+ * Edits: Footer: "Download App" title position
+ */
+.footer__download-title {
+  left: 0;
+  top: 333px;
+}
+
+/*
+ * Edits: Footer: shared setup of the WhatsApp and Call rows
+ * Note: Contact rows: 24px icon at 0 / 0, label at 35 / 0, number at 35 / 22. WhatsApp row at
+ *       y 198 (42 tall), Call row at y 260 (43 tall).
+ */
+.footer__contact {
+  left: 0;
+  width: 163px;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+/*
+ * Edits: Footer: the icon at the left of each contact row
+ */
+.footer__contact > svg {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+/*
+ * Edits: Footer: the label ("Whats App" / "Call Us") of a contact row
+ */
+.footer__contact span {
+  position: absolute;
+  left: 35px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/*
+ * Edits: Footer: the phone number of a contact row
+ */
+.footer__contact b {
+  position: absolute;
+  left: 35px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/*
+ * Edits: Footer: WhatsApp row position
+ */
+.footer__contact--whatsapp {
+  top: 198px;
+  height: 42px;
+}
+
+/*
+ * Edits: Footer: "Whats App" label position
+ */
+.footer__contact--whatsapp span {
+  top: 0;
+}
+
+/*
+ * Edits: Footer: WhatsApp number position
+ */
+.footer__contact--whatsapp b {
+  top: 22px;
+}
+
+/*
+ * Edits: Footer: Call row position
+ */
+.footer__contact--call {
+  top: 260px;
+  height: 43px;
+}
+
+/*
+ * Edits: Footer: "Call Us" label position
+ */
+.footer__contact--call span {
+  top: 1px;
+}
+
+/*
+ * Edits: Footer: Call number position
+ */
+.footer__contact--call b {
+  top: 23px;
+}
+
+/*
+ * Edits: Footer: the two app store buttons (shared vertical position)
+ * Note: App store buttons at y 373: App Store 167 x 55 at x 0, Google Play 191 x 56 at x 187
+ */
+.footer__store {
+  top: 373px;
+}
+
+/*
+ * Edits: Footer: App Store button position
+ */
+.footer__store--apple {
+  left: 0;
+}
+
+/*
+ * Edits: Footer: Google Play button position
+ */
+.footer__store--google {
+  left: 187px;
+}
+
+/*
+ * Edits: Footer: the two link columns (shared vertical position)
+ * Note: Columns 2 and 3 start at y 80: "Most Popular Categories" at x 468 (219 wide),
+ *       "Customer Services" at x 767 (167 wide). Heading: 20px semibold, line height 20, 3px
+ *       white underline whose bottom edge is at y 116.
+ */
+.footer__col {
+  top: 80px;
+}
+
+/*
+ * Edits: Footer: "Most Popular Categories" column position
+ */
+.footer__col--categories {
+  left: 468px;
+}
+
+/*
+ * Edits: Footer: "Customer Services" column position
+ */
+.footer__col--services {
+  left: 767px;
+}
+
+/*
+ * Edits: Footer: heading of a link column
+ */
+.footer__heading {
+  position: relative;
+  height: 36px;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 20px;
+  white-space: nowrap;
+}
+
+/*
+ * Edits: Footer: white underline below a column heading
+ */
+.footer__heading::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  background: var(--white);
+}
+
+/*
+ * Edits: Footer: the bulleted list of links in a column
+ * Note: Link lists start at y 136; 16px medium, rows 37px high, bullets indented 24px
+ */
+.footer__list {
+  margin-top: 20px;
+  list-style: disc;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+/*
+ * Edits: Footer: one link row in a column
+ */
+.footer__list li {
+  margin-left: 24px;
+  line-height: 37px;
+  white-space: nowrap;
+}
+
+/*
+ * Edits: Footer: thin line above the copyright text
+ * Note: Bottom line: 1200 x 1 on page row 2954 (y 511); copyright 413 x 20 at x 393 / y 542
+ */
+.footer__line {
+  left: 0;
+  top: 511px;
+  width: 1200px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/*
+ * Edits: Footer: copyright text at the bottom
+ */
+.footer__copy {
+  left: 393px;
+  top: 542px;
+  width: 413px;
+  height: 20px;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 20px;
+  text-align: center;
+  white-space: nowrap;
+}
